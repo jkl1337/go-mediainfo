@@ -3,7 +3,7 @@ package mediainfo
 /*
 #cgo LDFLAGS: -ldl
 #include <stdlib.h>
-#include <MediaInfoDLL/MediaInfoDLL.h>
+#include "MediaInfoDLL.h"
 
 static inline void* g_MediaInfo_New() {
     void *mi = MediaInfo_New();
