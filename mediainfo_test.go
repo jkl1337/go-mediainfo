@@ -6,7 +6,7 @@ import (
 
 func ExampleCount() {
 	mi := New()
-	err := mi.Open("cmd/Example.ogg")
+	err := mi.Open("cmd/howtouse/Example.ogg")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -17,7 +17,7 @@ func ExampleCount() {
 
 func ExampleGet() {
 	mi := New()
-	err := mi.Open("cmd/Example.ogg")
+	err := mi.Open("cmd/howtouse/Example.ogg")
 	if err != nil {
 		fmt.Println(err)
 		return
