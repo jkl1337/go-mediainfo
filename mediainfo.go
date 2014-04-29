@@ -146,8 +146,8 @@ func (mi *MediaInfo) Open(path string) error {
 	return nil
 }
 
-// GetOption gets a MediaInfo handle option
-func (mi *MediaInfo) GetOption(option string) string {
+// Option gets a MediaInfo handle option
+func (mi *MediaInfo) Option(option string) string {
 	coption := C.CString(option)
 	defer C.free(unsafe.Pointer(coption))
 
@@ -170,19 +170,19 @@ func (mi *MediaInfo) Inform() string {
 
 // Get gets the file info according to the parameters
 func (mi *MediaInfo) Get(streamKind StreamKind, streamNumber int, parameter string) string {
-	return mi.GetInfo(streamKind, streamNumber, parameter, InfoText)
+	return mi.GetKind(streamKind, streamNumber, parameter, InfoText)
 }
 
-// GetInfo gets the file info according to the parameters
-func (mi *MediaInfo) GetInfo(streamKind StreamKind, streamNumber int, parameter string, kindOfInfo InfoKind) string {
+// GetKind gets the file info according to the parameters
+func (mi *MediaInfo) GetKind(streamKind StreamKind, streamNumber int, parameter string, kindOfInfo InfoKind) string {
 	cparameter := C.CString(parameter)
 	defer C.free(unsafe.Pointer(cparameter))
 	return C.GoString(C.g_MediaInfo_Get(mi.cptr, toCStream(streamKind), C.size_t(streamNumber), cparameter,
 		toCInfo(kindOfInfo), toCInfo(InfoName)))
 }
 
-// GetI gets the file info according to a parameter index
-func (mi *MediaInfo) GetI(streamKind StreamKind, streamNumber int, parameter int, kindOfInfo InfoKind) string {
+// GetAt gets the file info at a particular parameter index
+func (mi *MediaInfo) GetAt(streamKind StreamKind, streamNumber int, parameter int, kindOfInfo InfoKind) string {
 	return C.GoString(C.g_MediaInfo_GetI(mi.cptr, toCStream(streamKind), C.size_t(streamNumber), C.size_t(parameter), toCInfo(kindOfInfo)))
 }
 
