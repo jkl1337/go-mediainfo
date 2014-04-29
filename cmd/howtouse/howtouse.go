@@ -4,9 +4,9 @@ import (
 	"flag"
 	"github.com/jkl1337/go-mediainfo"
 	"log"
-	"strings"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -21,9 +21,9 @@ func main() {
 		log.Fatal(err)
 	}
 	s := make([]string, 0)
-	s = append(s, mi.GetOption("Info_Version"))
-	s = append(s, "\nInfo_Parameters\n", mi.GetOption("Info_Parameters"))
-	s = append(s, "\nInfo_Codecs\n", mi.GetOption("Info_Codecs"))
+	s = append(s, mi.Option("Info_Version"))
+	s = append(s, "\nInfo_Parameters\n", mi.Option("Info_Parameters"))
+	s = append(s, "\nInfo_Codecs\n", mi.Option("Info_Codecs"))
 
 	s = append(s, "\nOpen\n")
 	mi.SetOption("Complete", "")
@@ -35,19 +35,19 @@ func main() {
 	s = append(s, "\nCustom Inform\n", mi.Inform())
 
 	s = append(s, "\nGet with Stream=General and Parameter=\"FileSize\"\n",
-		mi.GetInfo(mediainfo.StreamGeneral, 0, "FileSize", mediainfo.InfoText))
+		mi.GetKind(mediainfo.StreamGeneral, 0, "FileSize", mediainfo.InfoText))
 
 	s = append(s, "\nCount with StreamKind=Audio\n",
 		strconv.FormatInt(int64(mi.Count(mediainfo.StreamAudio)), 10))
 
 	s = append(s, "\nGet with Stream=General and Parameter=46\n",
-		mi.GetI(mediainfo.StreamGeneral, 0, 46, mediainfo.InfoText))
+		mi.GetAt(mediainfo.StreamGeneral, 0, 46, mediainfo.InfoText))
 
 	s = append(s, "\nGet with Stream=General and Parameter=\"AudioCount\"\n",
-		mi.GetInfo(mediainfo.StreamGeneral, 0, "AudioCount", mediainfo.InfoText))
+		mi.GetKind(mediainfo.StreamGeneral, 0, "AudioCount", mediainfo.InfoText))
 
 	s = append(s, "\nGet with Stream=Audio and Parameter=\"StreamCount\"\n",
-		mi.GetInfo(mediainfo.StreamAudio, 0, "StreamCount", mediainfo.InfoText))
+		mi.GetKind(mediainfo.StreamAudio, 0, "StreamCount", mediainfo.InfoText))
 
 	s = append(s, "\nClose\n")
 	mi.Close()
