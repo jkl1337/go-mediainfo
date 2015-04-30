@@ -50,9 +50,9 @@ static inline void g_MediaInfo_Close(void *mi) {
 import "C"
 
 import (
-	"unsafe"
-	"runtime"
 	"errors"
+	"runtime"
+	"unsafe"
 )
 
 // MediaInfo is an instance of a mediainfo accessor.
@@ -62,6 +62,7 @@ type MediaInfo struct {
 
 // StreamKind is used to specify the type of stream (audio, video, chapters, etc) when getting information.
 type StreamKind int
+
 // InfoKind is used to specify the aspect of information (name, value, unit of measure) when retrieving information.
 type InfoKind int
 
@@ -100,7 +101,6 @@ const (
 	InfoHowTo = 7
 )
 
-
 func toCInfo(i InfoKind) C.MediaInfo_info_C {
 	return C.MediaInfo_info_C(i)
 }
@@ -126,7 +126,7 @@ func init() {
 func New() *MediaInfo {
 	cmi := C.g_MediaInfo_New()
 	mi := &MediaInfo{cmi}
-	runtime.SetFinalizer(mi, func (mi *MediaInfo) {
+	runtime.SetFinalizer(mi, func(mi *MediaInfo) {
 		if mi.cptr != nil {
 			C.g_MediaInfo_Delete(mi.cptr)
 		}
