@@ -127,12 +127,12 @@ func (mi *MediaInfo) Inform() string {
 	return C.GoString(C.g_MediaInfo_Inform(mi.cptr))
 }
 
-// Get gets the file info according to the parameters.
+// Get gets a textual file metadata item according to the parameters.
 func (mi *MediaInfo) Get(streamKind StreamKind, streamNumber int, parameter string) string {
 	return mi.GetKind(streamKind, streamNumber, parameter, InfoText)
 }
 
-// GetKind gets the file info according to the parameters.
+// GetKind gets file metadata according to the parameters.
 func (mi *MediaInfo) GetKind(streamKind StreamKind, streamNumber int, parameter string, kindOfInfo InfoKind) string {
 	cparameter := C.CString(parameter)
 	defer C.free(unsafe.Pointer(cparameter))
@@ -145,7 +145,7 @@ func (mi *MediaInfo) GetI(streamKind StreamKind, streamNumber int, parameter int
 	return C.GoString(C.g_MediaInfo_GetI(mi.cptr, toCStream(streamKind), C.size_t(streamNumber), C.size_t(parameter), toCInfo(kindOfInfo)))
 }
 
-// Count gets the count of stream.
+// Count gets the number of a particular kind of stream in the file.
 func (mi *MediaInfo) Count(streamKind StreamKind) int {
 	return int(C.g_MediaInfo_Count_Get(mi.cptr, toCStream(streamKind)))
 }
