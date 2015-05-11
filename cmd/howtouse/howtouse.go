@@ -41,7 +41,7 @@ func main() {
 		strconv.FormatInt(int64(mi.Count(mediainfo.StreamAudio)), 10))
 
 	s = append(s, "\nGet with Stream=General and Parameter=46\n",
-		mi.GetAt(mediainfo.StreamGeneral, 0, 46, mediainfo.InfoText))
+		mi.GetI(mediainfo.StreamGeneral, 0, 46, mediainfo.InfoText))
 
 	s = append(s, "\nGet with Stream=General and Parameter=\"AudioCount\"\n",
 		mi.GetKind(mediainfo.StreamGeneral, 0, "AudioCount", mediainfo.InfoText))
