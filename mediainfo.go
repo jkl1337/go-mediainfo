@@ -70,8 +70,8 @@ func toCStream(s StreamKind) C.MediaInfo_stream_C {
 
 var cEmptyString int
 
-func emptyCString() *_Ctype_char {
-	return (*_Ctype_char)(unsafe.Pointer(&cEmptyString))
+func emptyCString() *C.char {
+	return (*C.char)(unsafe.Pointer(&cEmptyString))
 }
 
 // ErrOpenFailed is returned by Open when mediainfo cannot open the file.
