@@ -117,7 +117,7 @@
 #endif
 
 /*-------------------------------------------------------------------------*/
-#if defined(_WIN32) || defined(WIN32)
+#if defined(WINDOWS)
     #ifdef _UNICODE
         #define MEDIAINFODLL_NAME L"MediaInfo.dll"
     #else //_UNICODE
